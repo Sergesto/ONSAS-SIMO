@@ -87,7 +87,7 @@ deltas = [-matUs(6+1,:)' -matUs(6+5,:)'] ;
         xlabel('Deformación \epsilon');
         hold on;
         fprintf('\n');
-
+%{
 % solución analítica
 syms dw1;
 syms dw2;
@@ -97,11 +97,12 @@ eqn1= (2*z2*dw1 + (dw1)^2)/(2*((dw1+z2)^2+(z2)^2)) == (sigma_Y_0)/E + (E+Kplas)/
 S1 = vpasolve(eqn1,dw1);
 eqn2= (2*(z2+S1(1))*dw2 + (dw2)^2)/(2*((dw2+z2+S1(1))^2+(z2+S1(1))^2)) == Fu/2/(z2+S1(1)+dw2)/Ae*sqrt((S1(1)+z2+dw2)^2+(z2+S1(1))^2)/E;
 S2 = vpasolve(eqn2,dw2);
-fprintf('| Desplazamiento vertical\n');
-fprintf('|Solución analítica %.15f\n',S1);
+%}
+fprintf('|Desplazamiento vertical\n');
+% fprintf('|Solución analítica %.15f\n',S1);
 fprintf('|Solución numérica  %.15f\n',abs(deltas(length(deltas),2)));
 % fprintf('\n');
 %}
 % fprintf('| Deformación plástica acumulada alfa\n');
 % alfaa=(E+Kplas)/(E*Kplas)*(Fu/2/(z2+S1(1))/Ae*sqrt((S1(1)+z2)^2+(z2)^2)-sigma_Y_0);
-fprintf('| Deformación plástica acumulada (alfa) %.15f\n',Rstrainacum(1));
+fprintf('|Deformación plástica acumulada (alfa) %.15f\n',Rstrainacum(1));
